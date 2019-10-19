@@ -15,12 +15,20 @@ module.exports = {
 
   async show(req, res) {
 
-    let { status, funcionario_criou, funcionario_atribuido, data_inicial, data_final, tipo_servico, prioridade } = req.query;
+    let { status, funcionario_criou, funcionario_atribuido, data_inicial, data_final, tipo_servico, prioridade, utilizouProduto } = req.query;
 
     let filter = {
       $and: []
     }
-    if (status) filter.$and.push({status});
+
+    if (status == 'NaoResolvido') {
+      filter.$and.push({status: 'Aberto'})
+      filter.$and.push({"resolvido.funcionario_id": {$exists: true}})
+    } else {
+      if (status) filter.$and.push({status});
+    }
+    
+    if (utilizouProduto) filter.$and.push({"resolvido.produtosUtilizados": {$size: { $gte : 1 }}})
     
     if (funcionario_criou) {
       let funcionario = await Funcionario.findOne({ matricula: funcionario_criou });
