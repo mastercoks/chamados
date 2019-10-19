@@ -6,7 +6,8 @@ module.exports = {
   
   async update(req, res) {
     
-    const { id, funcionario_matricula, produto_id, quantidade } = req.body;
+    // const { id, funcionario_matricula, produto_id, quantidade } = req.body;
+    const { id, produto_id, quantidade } = req.body;
 
     const chamado = await Chamado.findById(id);
 
@@ -31,21 +32,28 @@ module.exports = {
       });
     }
     
-    const funcionario = await Funcionario.findOne({ matricula: funcionario_matricula });
+    // const funcionario = await Funcionario.findOne({ matricula: funcionario_matricula });
     
-    if (!funcionario) {      
-      return res.status(400).json({
-        sucess: false,
-        msg: 'Falha ao adicionar Produto, funcionario não encontrado!'
-      });
-    }
+    // if (!funcionario) {      
+    //   return res.status(400).json({
+    //     sucess: false,
+    //     msg: 'Falha ao adicionar Produto, funcionario não encontrado!'
+    //   });
+    // }
 
-    if (funcionario.tipo !== 'TI') {
-      return res.status(400).json({
-        sucess: false,
-        msg: 'Falha ao adicionar Produto, funcionario sem permissão!'
-      });
-    }    
+    // if (funcionario.tipo !== 'TI') {
+    //   return res.status(400).json({
+    //     sucess: false,
+    //     msg: 'Falha ao adicionar Produto, funcionario sem permissão!'
+    //   });
+    // }  
+
+    // if (chamado.resolvido.funcionario_id !== funcionario._id) {
+    //   return res.status(400).json({
+    //     sucess: false,
+    //     msg: 'Falha ao adicionar Produto, funcionario diferente do atribuido ao chamado!'
+    //   });
+    // }  
 
     const produto = await Produto.findById(produto_id);
     

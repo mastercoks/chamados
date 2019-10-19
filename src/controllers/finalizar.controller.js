@@ -5,7 +5,8 @@ module.exports = {
   
   async update(req, res) {
     
-    const { id, funcionario_matricula, descricao, status} = req.body;
+    const { id, descricao, status} = req.body;
+    // const { id, funcionario_matricula, descricao, status} = req.body;
 
     const chamado = await Chamado.findById(id);
 
@@ -37,21 +38,28 @@ module.exports = {
       });
     }
     
-    const funcionario = await Funcionario.findOne({ matricula: funcionario_matricula });
+    // const funcionario = await Funcionario.findOne({ matricula: funcionario_matricula });
     
-    if (!funcionario) {      
-      return res.status(400).json({
-        sucess: false,
-        msg: 'Falha ao finalizar, funcionario não encontrado!'
-      });
-    }
+    // if (!funcionario) {      
+    //   return res.status(400).json({
+    //     sucess: false,
+    //     msg: 'Falha ao finalizar, funcionario não encontrado!'
+    //   });
+    // }
 
-    if (funcionario.tipo !== 'TI') {
-      return res.status(400).json({
-        sucess: false,
-        msg: 'Falha ao finalizar, funcionario sem permissão!'
-      });
-    }    
+    // if (funcionario.tipo !== 'TI') {
+    //   return res.status(400).json({
+    //     sucess: false,
+    //     msg: 'Falha ao finalizar, funcionario sem permissão!'
+    //   });
+    // }    
+
+    // if (chamado.resolvido.funcionario_id !== funcionario._id) {
+    //   return res.status(400).json({
+    //     sucess: false,
+    //     msg: 'Falha ao finalizar, funcionario diferente do atribuido ao chamado!'
+    //   });
+    // }  
 
     const chamadoFinalizado = await Chamado.updateOne({
       _id: id
