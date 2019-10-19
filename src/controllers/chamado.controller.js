@@ -6,7 +6,7 @@ module.exports = {
   async index(req, res) {
     const { id } = req.params;
 
-    const chamado = await Chamado.findById(id).populate("funcionario_id").exec();
+    const chamado = await Chamado.findById(id).populate("funcionario_id").populate("resolvido.funcionario_id").exec();
 
     // const funcionario = await Funcionario.findOne({ matricula: chamado.funcionario_matricula });
 
