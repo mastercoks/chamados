@@ -7,10 +7,6 @@ module.exports = {
     
     const { id, funcionario_matricula } = req.body;
 
-    const resolvido = {
-      funcionario_matricula,
-      data_hora_vinculo: Date()
-    }
 
     const chamado = await Chamado.findById(id);
 
@@ -49,7 +45,12 @@ module.exports = {
         sucess: false,
         msg: 'Falha na atribuição do Chamado, funcionario sem permissão!'
       });
-    }    
+    }
+
+    const resolvido = {
+      funcionario_id: funcionario.id,
+      data_hora_vinculo: Date()
+    }
     
     const chamadoAtribuido = await Chamado.updateOne({
       _id: id

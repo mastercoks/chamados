@@ -54,6 +54,7 @@ const produtosUtilizadosSchema = new mongoose.Schema({
 const resolvidoSchema = new mongoose.Schema({
   funcionario_id: {
     type: mongoose.Schema.Types.ObjectId,
+    ref: 'Funcionario',
     required: true
   },
   data_hora_vinculo: {

@@ -14,7 +14,7 @@ module.exports = {
   },
 
   async show(req, res) {
-    const chamados = await Chamado.find().populate("funcionario_id").exec();
+    const chamados = await Chamado.find().populate("funcionario_id").populate("resolvido.funcionario_id").exec();
 
     return res.json(chamados);
   },
