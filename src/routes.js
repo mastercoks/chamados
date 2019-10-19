@@ -4,13 +4,17 @@ const ProdutoController = require('./controllers/produto.controller');
 const ChamadoController = require('./controllers/chamado.controller');
 const AtribuirController = require('./controllers/atribuir.controller');
 const AddProdutoController = require('./controllers/addProduto.controller');
+const FinalizarController = require('./controllers/finalizar.controller');
 
 
 const routes = express.Router();
 
-routes.post('/addProduto', AddProdutoController.update);
 
 routes.post('/atribuir', AtribuirController.update);
+
+routes.post('/addProduto', AddProdutoController.update);
+
+routes.post('/finalizar', FinalizarController.update);
 
 routes.get('/funcionarios/:matricula', FuncionarioController.index);
 routes.get('/funcionarios', FuncionarioController.show);
