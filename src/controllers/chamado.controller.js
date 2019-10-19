@@ -14,7 +14,33 @@ module.exports = {
   },
 
   async show(req, res) {
-    const chamados = await Chamado.find().populate("funcionario_id").populate("resolvido.funcionario_id").populate("resolvido.produtosUtilizados.produto_id").exec();
+
+    let { status, funcionario_criou, funcionario_atribuido, data_inicial, data_final, tipo_servico, prioridade } = req.query;
+
+    let filter = {
+      $and: []
+    }
+    if (status) filter.$and.push({status});
+    
+    if (funcionario_criou) {
+      let funcionario = await Funcionario.findOne({ matricula: funcionario_criou });
+      filter.$and.push({funcionario_id : funcionario._id})
+    };  
+
+    if (funcionario_atribuido) {
+      let funcionario = await Funcionario.findOne({ matricula: funcionario_atribuido });
+      filter.$and.push({"resolvido.funcionario_id" : funcionario._id})
+    };  
+
+    if (data_inicial && data_final) filter.$and.push({$and: [{data_hora_abertura : {$gte : data_inicial}}, {data_hora_abertura : {$lte : data_final}}]});
+
+    if (tipo_servico) filter.$and.push({"tipo_servico.nome" : tipo_servico});
+    
+    if (prioridade) filter.$and.push({"tipo_servico.prioridade" : prioridade});
+
+    console.log(filter);
+    if (filter.$and.length === 0) filter = {};
+    const chamados = await Chamado.find(filter).populate("funcionario_id").populate("resolvido.funcionario_id").populate("resolvido.produtosUtilizados.produto_id").exec();
 
     return res.json(chamados);
   },
