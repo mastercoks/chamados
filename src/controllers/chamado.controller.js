@@ -26,9 +26,15 @@ module.exports = {
       filter.$and.push({"resolvido.funcionario_id": {$exists: true}})
     } else {
       if (status) filter.$and.push({status});
+    }    
+
+    if (utilizouProduto ) {
+      if (utilizouProduto == "true") {
+        filter.$and.push({"resolvido.produtosUtilizados": {$exists:true, $not:{$size:0}}})
+      } else if (utilizouProduto == "false") {
+        filter.$and.push({"resolvido.produtosUtilizados.0": {$exists:false}})
+      }
     }
-    
-    if (utilizouProduto) filter.$and.push({"resolvido.produtosUtilizados": {$size: { $gte : 1 }}})
     
     if (funcionario_criou) {
       let funcionario = await Funcionario.findOne({ matricula: funcionario_criou });
