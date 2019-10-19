@@ -51,7 +51,7 @@ module.exports = {
       });
     }    
     
-    const chamadoAtribuido = await Chamado.update({
+    const chamadoAtribuido = await Chamado.updateOne({
       _id: id
     }, {
       resolvido

@@ -63,13 +63,13 @@ module.exports = {
       });
     }
 
-    const produtoUtilizado = await Produto.update({
+    const produtoUtilizado = await Produto.updateOne({
       _id: produto_id
     }, {
       quantidade: produto.quantidade - quantidade
     });
 
-    const chamadoAtribuido = await Chamado.update({
+    const chamadoAtribuido = await Chamado.updateOne({
       _id: id
     }, {
       $push: {

@@ -35,7 +35,7 @@ module.exports = {
     const produto = await Produto.findById(id);
 
     if (produto) {
-      const produtoAtualizado = await Produto.update({
+      const produtoAtualizado = await Produto.updateOne({
         _id: id
       }, {
         quantidade: produto.quantidade + quantidade

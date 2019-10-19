@@ -2,7 +2,6 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 require('dotenv/config');
-// const bodyPaser = require('body-paser');
 
 const urlMongo = process.env.DB === 'localhost' ? 
   `mongodb://localhost:27017/chamados`: 
@@ -18,13 +17,9 @@ mongoose.connect(urlMongo, {
   useUnifiedTopology: true 
 });
 
-// app.use(bodyPaser.urlencoded({ extended:true }))
-// app.use(bodyPaser.json());
-
 app.use(cors())
 
 app.use(express.json());
 app.use(routes);
-
 
 module.exports = app;

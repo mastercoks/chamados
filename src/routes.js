@@ -12,7 +12,7 @@ routes.post('/addProduto', AddProdutoController.update);
 
 routes.post('/atribuir', AtribuirController.update);
 
-routes.get('/funcionarios/:id', FuncionarioController.index);
+routes.get('/funcionarios/:matricula', FuncionarioController.index);
 routes.get('/funcionarios', FuncionarioController.show);
 routes.post('/funcionarios', FuncionarioController.store);
 
