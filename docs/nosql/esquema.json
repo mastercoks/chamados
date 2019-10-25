@@ -1,0 +1,45 @@
+{
+  "funcionarios": {
+    "_id" : "ObjectId",
+    "matricula" : "String",
+    "nome" : "String",
+    "tipo" : "String",
+    "senha" : "String",
+    "setor" : "String"
+  },
+  
+"produtos": {
+  "_id" : "ObjectId",
+  "nome" : "String",
+  "descricao" : "String",
+  "quantidade" : "Number"
+},
+  
+"chamados": {
+  "_id" : "ObjectId",
+  "descricao" : "String",
+  "status" : "String",
+  "funcionario_id" : "ObjectId",
+  "data_hora_abertura" : "Date",
+  "tipo_servico" : {
+    "_id" : "ObjectId",
+    "nome" : "String",
+    "prioridade" : "String"
+  },
+  "resolvido" : {
+    "_id" : "ObjectId",
+    "funcionario_id": "ObjectId",
+    "data_hora_vinculo" : "Date",
+    "data_hora_finalizado" : "Date",
+    "descricao" : "String",
+    "produtos_utilizados": [
+      {
+        "_id" : "ObjectId",
+        "produto_id": "ObjectId",
+        "quantidade": "Number"
+      }
+    ]
+  }
+}
+
+}
