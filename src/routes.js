@@ -1,4 +1,5 @@
 const express = require('express');
+
 const FuncionarioController = require('./controllers/funcionario.controller');
 const ProdutoController = require('./controllers/produto.controller');
 const ChamadoController = require('./controllers/chamado.controller');

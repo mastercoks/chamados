@@ -4,11 +4,10 @@ const Produto = require('../models/produto.model');
 
 module.exports = {
   
-  async chamadosPorPeriodo(req, res) {
-  
-  },
-  
-  async chamadosPorPeriodo(req, res) {
-  
+  async tempoMedio(req, res) {
+    
+    const chamados = await Chamado.find(filter).populate("funcionario_id").populate("resolvido.funcionario_id").populate("resolvido.produtosUtilizados.produto_id").exec();
+
+    return res.json(chamados);
   },
 }
