@@ -24,10 +24,7 @@ module.exports = {
 
     if (matricula) filter.$and.push({matricula});
     if (tipo) filter.$and.push({tipo});
-    if (setor) filter.$and.push({setor});
-
-    console.log(filter);
-    
+    if (setor) filter.$and.push({setor});    
 
     const funcionarios = await Funcionario.find(filter);
 

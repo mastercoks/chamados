@@ -7,9 +7,7 @@ const AtribuirController = require('./controllers/atribuir.controller');
 const AddProdutoController = require('./controllers/addProduto.controller');
 const FinalizarController = require('./controllers/finalizar.controller');
 
-
 const routes = express.Router();
-
 
 routes.post('/atribuir', AtribuirController.update);
 

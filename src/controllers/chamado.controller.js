@@ -52,7 +52,6 @@ module.exports = {
     
     if (prioridade) filter.$and.push({"tipo_servico.prioridade" : prioridade});
 
-    console.log(filter);
     if (filter.$and.length === 0) filter = {};
     const chamados = await Chamado.find(filter).populate("funcionario_id").populate("resolvido.funcionario_id").populate("resolvido.produtosUtilizados.produto_id").exec();
 
