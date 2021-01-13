@@ -1,13 +1,16 @@
 const express = require('express');
 
-const FuncionarioController = require('./controllers/funcionario.controller');
-const ProdutoController = require('./controllers/produto.controller');
-const ChamadoController = require('./controllers/chamado.controller');
 const AtribuirController = require('./controllers/atribuir.controller');
 const AddProdutoController = require('./controllers/addProduto.controller');
+const ChamadoController = require('./controllers/chamado.controller');
+const FuncionarioController = require('./controllers/funcionario.controller');
+const ProdutoController = require('./controllers/produto.controller');
+const HealthcheckController = require('./controllers/healthcheck.controller');
 const FinalizarController = require('./controllers/finalizar.controller');
 
 const routes = express.Router();
+
+routes.get('/healthcheck', HealthcheckController.index);
 
 routes.post('/atribuir', AtribuirController.update);
 
