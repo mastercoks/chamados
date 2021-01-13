@@ -5,7 +5,7 @@ require('dotenv/config');
 
 const urlMongo = process.env.DB === 'localhost' ? 
   `mongodb://localhost:27017/chamados`: 
-  `mongodb://${process.env.DB_USER}:${process.env.DB_PASSWORD}@ds153841.mlab.com:53841/chamados`;
+  `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@cluster0.gev4f.mongodb.net/chamados?retryWrites=true&w=majority`;
 
 const routes = require('./routes');
 
